@@ -10,10 +10,11 @@ import {
     SearchbarSection,
     JournaldCardsSection,
 } from './styles';
+import { useSelector } from 'react-redux';
 
 export const DashboardPage = () => {
 
-    const data = true;
+    const { notes } = useSelector( state => state.notes );
 
     return (
         <DashboardScreen>
@@ -22,34 +23,19 @@ export const DashboardPage = () => {
                 <Searchbar />
             </SearchbarSection>
             {
-                data
+                notes.length > 0
                     ?
                         <JournaldCardsSection>
-                            <JournaldCard 
-                                date="13 Ago. 2021" 
-                                title="Journald Title" 
-                                text="Texto de prueba muy largo porque nose que poner asi que pongo cualuqier cosa para completar est camp ahre que ya me faltan mas letras" 
-                            />
-                            <JournaldCard 
-                                date="13 Ago. 2021" 
-                                title="Journald Title" 
-                                text="Texto de prueba muy largo porque nose que poner asi que pongo cualuqier cosa para completar est camp ahre que ya me faltan mas letras" 
-                            />
-                            <JournaldCard 
-                                date="13 Ago. 2021" 
-                                title="Journald Title" 
-                                text="Texto de prueba muy largo porque nose que poner asi que pongo cualuqier cosa para completar est camp ahre que ya me faltan mas letras" 
-                            />
-                            <JournaldCard 
-                                date="13 Ago. 2021" 
-                                title="Journald Title" 
-                                text="Texto de prueba muy largo porque nose que poner asi que pongo cualuqier cosa para completar est camp ahre que ya me faltan mas letras" 
-                            />
-                            <JournaldCard 
-                                date="13 Ago. 2021" 
-                                title="Journald Title" 
-                                text="Texto de prueba muy largo porque nose que poner asi que pongo cualuqier cosa para completar est camp ahre que ya me faltan mas letras" 
-                            />
+                            {
+                                notes.map( note => (
+                                    <JournaldCard 
+                                        key={ note.id }
+                                        date={ note.date }
+                                        title={ note.title }
+                                        text={ note.body }
+                                    />
+                                ))
+                            }
                             <section>
                                 paginación
                             </section>

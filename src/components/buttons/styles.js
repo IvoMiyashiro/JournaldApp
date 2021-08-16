@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { Link as LinkRouter } from "react-router-dom";
 
+import { BsCardImage } from 'react-icons/bs';
+
 const common = `
     align-items: center;
     border-radius: 4px;
@@ -13,10 +15,12 @@ const common = `
     text-transform: uppercase;
 `;
 
+/* Primary / Secondary Buttons */
+
 export const Button = styled.button`
     ${ common }
     background-color: ${ props => props.theme.primary };
-    border: 2px solid transparent;
+    border: 2px solid ${ props => props.theme.primary };
     color: #fff;
     font-size: ${ props => props.fontSize };
     height: ${ props => props.height };
@@ -39,6 +43,13 @@ export const ButtonOutline = styled.button`
         transition: .2s ease-in-out;
     }
 `;
+
+export const Link = Button.withComponent( LinkRouter );
+export const LinkOutline = ButtonOutline.withComponent( LinkRouter );
+
+/* Primary / Secondary Buttons */
+
+/* Google Button */
 
 export const GoogleBtn = styled.button`
     font-family: 'Roboto';
@@ -68,5 +79,29 @@ export const GoogleText = styled.p`
     color: #fff;
 `;
 
-export const Link = Button.withComponent( LinkRouter );
-export const LinkOutline = ButtonOutline.withComponent( LinkRouter );
+/* Google Button */
+
+/* Add Image Button */
+
+export const ButtonAddImageStyled = styled.button`
+    border: none;
+    background: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .2 ease-in-out transform;
+
+    :hover {
+        transition: .2 ease-in-out transform;
+        transform: scale(.95);
+    }
+`;
+
+export const AddImageIcon = styled( BsCardImage )`
+    font-size: 1.5rem;
+    color: ${ props => props.theme.primary };
+`;
+
+
+/* Add Image Button */

@@ -58,6 +58,10 @@ export const HamburguerMenu = styled.div`
     text-align: center;
     transition: .2s ease height;
     width: 100%;
+
+    ${ bps.desktop } {
+        display: none;
+    }
 `;
 
 export const HamburguerList = styled.ul`
@@ -68,6 +72,7 @@ export const HamburguerList = styled.ul`
 
 export const HamburguerItem = styled.li`
     color: #fff;
+    cursor: pointer;
     font-size: 1.115rem;
     font-weight: 600;
     padding: 1.25em;
@@ -76,4 +81,17 @@ export const HamburguerItem = styled.li`
 
 export const HamburguerLink = styled( Link )`
     text-decoration: none;
+`;
+
+export const NavNameContainer = styled.section`
+    align-items: center;
+    display: flex;
+`;
+
+export const NavName = styled.p`
+    color: ${ props => props.theme.textColor };
+    display: inline-block;
+    font-weight: 600;
+    margin: 0;
+    margin-left: .65em;
 `;

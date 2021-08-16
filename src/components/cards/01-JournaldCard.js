@@ -1,9 +1,10 @@
-import React, { lazy } from 'react';
+import moment from 'moment';
+import React from 'react';
 
 import JournaldImg from '../../assets/images/JournaldImg.jpg';
 
 import {
-    JournaldCard_,
+    JournaldCardStyled,
     JournaldCardImgSection,
     JournaldCardInfoSection,
     JournaldCardImg,
@@ -19,16 +20,18 @@ export const JournaldCard = ({
     text 
 }) => {
 
+    const noteDate = moment( date ).format('LL');;
+
     return (
-            <JournaldCard_ to="/dashboard">
+            <JournaldCardStyled to="/dashboard/entry">
                 <JournaldCardImgSection>
                     <JournaldCardImg loading="lazy" src={ img } />
                 </JournaldCardImgSection>
                 <JournaldCardInfoSection>
-                    <JournaldCardDate> { date } </JournaldCardDate>
+                    <JournaldCardDate> { noteDate } </JournaldCardDate>
                     <JournaldCardTitle> { title } </JournaldCardTitle>
                     <JournaldCardText> { text } </JournaldCardText>
                 </JournaldCardInfoSection>
-            </JournaldCard_>
+            </JournaldCardStyled>
     )
 }

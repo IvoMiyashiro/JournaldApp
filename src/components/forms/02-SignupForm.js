@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+
+import { startSignUp } from '../../redux/actions/01-auth';
 
 import { InputForm } from '../inputs/01-InputForm';
 import { ButtonPrimary } from '../buttons/01-ButtonPrimary';
-
 import { Spinner } from '../spinners/01-spinner';
 
 import { regEx } from './03-RegEx';
@@ -15,7 +16,7 @@ import {
 
 export const SignupForm = () => {
 
-    const history = useHistory();
+    const dispatch = useDispatch();
     const { name, email, password } = regEx;
 
     const [ fullNameState, setFullNameState ] = useState({ value: '', isValid: null });
@@ -43,7 +44,7 @@ export const SignupForm = () => {
         setButtonChildren( <Spinner /> );
 
         setTimeout( async() => {
-            history.push('/login');
+            dispatch( startSignUp( fullNameState.value, emailState.value, password_firstState.value ) )
         },[1500]);
     }
 

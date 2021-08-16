@@ -14,7 +14,7 @@ export const JournaldCardImg = styled.img`
     transition: .2s ease-in-out transform;
 `;
 
-export const JournaldCard_ = styled(Link)`
+export const JournaldCardStyled = styled(Link)`
     background: #fff;
     border-radius: 4px;
     box-shadow:
@@ -102,7 +102,7 @@ export const JournaldCardText = styled.p`
 
 /* Add entry Card */
 
-export const AddJournald_ = styled( Link )`
+export const AddJournaldCardStyled = styled( Link )`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -140,3 +140,62 @@ export const AddJournaldIcon = styled( MdAddCircle )`
 `;
 
 /* Add entry Card */
+
+/* Entry Card */
+
+export const EntryCardStyled = styled.div`
+    background: #fff;
+    border-radius: 6px;
+    box-shadow:
+    0 0px 0.6px rgba(0, 0, 0, 0.02),
+    0 0px 1.3px rgba(0, 0, 0, 0.028),
+    0 0px 2.5px rgba(0, 0, 0, 0.035),
+    0 0px 4.5px rgba(0, 0, 0, 0.042),
+    0 0px 8.4px rgba(0, 0, 0, 0.05),
+    0 0px 20px rgba(0, 0, 0, 0.07)
+    ;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em 1em;
+    width: 100%;
+    max-width: 300px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
+`;
+
+export const EntryCardInfoSection = styled.section`
+    margin-top: 1em;
+`;
+
+export const EntryCardButtonSection = styled.section`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+
+`;
+
+export const EntryCardImg = styled.img`
+    width: 100%;
+    height: 120px;
+    border-radius: 4px;
+    object-fit: cover;
+`;
+
+export const EntryCardDate = styled.small`
+    margin: 0;
+    color: ${ props => props.theme.primary }
+`;
+
+export const EntryCardTitle = styled.h2`
+    align-self: flex-start;
+    margin: 0;
+`;
+
+export const EntryCardText = styled.p`
+    margin: .5em 0;
+    margin-bottom: 2em;
+`;
+
+/* Entry Card */

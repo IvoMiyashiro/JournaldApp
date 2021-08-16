@@ -5,13 +5,14 @@ import {
 } from './styles';
 
 export const ButtonPrimary = ({ 
-    fontSize = '1rem',
-    fontStyle = 'regular',
-    height = '30px',
-    children = '',
+    fontSize='1rem',
+    fontStyle='regular',
+    height='30px',
+    children='',
     to="",
-    width = '100px',
-    disabled = false,
+    width='100px',
+    func=null,
+    disabled=false,
 }) => {
     return to
             ?
@@ -30,7 +31,8 @@ export const ButtonPrimary = ({
                     fontSize={ fontSize }
                     fontStyle={ fontStyle }
                     height={ height }
-                    width={ width } 
+                    width={ width }
+                    onClick={ func }
                 >
                     { children }
                 </Button>

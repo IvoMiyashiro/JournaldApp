@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import { bps } from "../../styles/03-breakPoints";
 
@@ -25,5 +26,17 @@ export const Title = styled.h1`
 `;
 
 export const FormSection = styled.section`
-    margin-top: 2.5em;
+    margin-top: 1em;
 `;
+
+export const LinkR = styled( Link )`
+    color: ${ props => props.theme.textColor };
+    align-items: center;
+    color: ${ props => props.theme.textColor };
+    display: flex;
+    font-size: .85rem;
+    margin-right: 20em;
+    margin-top: 1em;
+    text-decoration: none;
+`;
+

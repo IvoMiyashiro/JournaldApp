@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { startGoogleLogin, startLogin } from '../../redux/actions/01-auth';
 
 import { ButtonPrimary } from '../buttons/01-ButtonPrimary';
 import { GoogleButton } from '../buttons/03-GoogleButton';
@@ -17,9 +19,10 @@ import {
 
 export const LoginForm = () => {
 
-    const history = useHistory();
+    const dispatch = useDispatch();
     const [ emailState, setEmailState ] = useState({ value: '', isValid: null });
     const [ passwordState, setPasswordState ] = useState({ value: '', isValid: null });
+    const [ loginError, setLoginError ] = useState( false );
 
     const [ buttonChildren, setButtonChildren ] = useState( "let's go" );
     
@@ -28,16 +31,21 @@ export const LoginForm = () => {
         e.preventDefault();
         
         setButtonChildren( <Spinner /> );
+        
 
         setTimeout( async() => {
-            history.push('/dashboard');
-        },[1500]);
+            dispatch( startLogin( emailState.value, passwordState.value, setLoginError, setButtonChildren ));
+        },[1000]);
+    }
+
+    const handleGoogleLogin = () => {
+        dispatch( startGoogleLogin() );
     }
 
     return (
         <Form onSubmit={ handleSubmit }>
             {
-                emailState.value === false || passwordState.value === false
+                loginError
                     ?
                         <Error> Email or password incorrect. </Error>
                     :
@@ -59,10 +67,10 @@ export const LoginForm = () => {
                 />
             </InputsSection>
             <Checkbox 
-                children="Remember Me"
+                children="Remember me"
                 name="remember"
             />
-            <ForgetPassword to="/"> Forgot my password </ForgetPassword>
+            <ForgetPassword to="/signup"> Create new account </ForgetPassword>
             <ButtonsSection>
                 <ButtonPrimary
                     children={ buttonChildren }
@@ -73,6 +81,8 @@ export const LoginForm = () => {
                     width="100%"
                     children="Sign in with Google"
                     height="32px"
+                    type="button"
+                    func={ handleGoogleLogin }
                 />
             </ButtonsSection>
         </Form>

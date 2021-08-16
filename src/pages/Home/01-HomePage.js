@@ -27,3 +27,5 @@ export const HomePage = () => {
         </HomeScreen>
     )
 }
+
+

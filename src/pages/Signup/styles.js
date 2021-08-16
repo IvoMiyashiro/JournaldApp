@@ -7,5 +7,4 @@ export const SignupScreen = styled.section`
     height: 100vh;
     justify-content: center;
     margin-top: -40px;
-    width: 100vw;
 `;

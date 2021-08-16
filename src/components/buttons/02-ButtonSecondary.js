@@ -11,6 +11,7 @@ export const ButtonSecondary = ({
     children,
     to = '',
     width = '100px',
+    func,
 }) => {
     return to
                 ?
@@ -28,7 +29,8 @@ export const ButtonSecondary = ({
                         fontSize={ fontSize }
                         fontStyle={ fontStyle }
                         height={ height }
-                        width={ width } 
+                        width={ width }
+                        onClick={ func }
                     >
                         { children }
                     </ButtonOutline>

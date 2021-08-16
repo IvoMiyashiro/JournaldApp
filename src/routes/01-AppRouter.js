@@ -1,43 +1,59 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     BrowserRouter as Router,
-    Route,
     Switch,
 } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-import { dark, light } from '../styles/02-theme';
+import { firebase } from "../firebase/01-firebase-config";
+import { login } from '../redux/actions/01-auth';
+import { startLoadingNotes } from '../redux/actions/02-notes';
 
 import { Navbar } from '../components/navbar/01-Navbar';
-import { HomePage } from '../pages/Home/01-HomePage';
-import { LoginPage } from '../pages/Login/01-LoginPage';
-import { SignupPage } from '../pages/Signup/01-SignupPage';
-import { DashboardPage } from '../pages/Dashboard/01-DashboardPage';
-import { AddEntryPage } from '../pages/AddEntry/01-AddEntryPage';
-import { EntryPage } from '../pages/Entry/01-EntryPage';
-import { ThemeProvider } from 'styled-components';
+import { PublicRoutes } from './02-PublicRoutes';
+import { PrivateRoutes } from './03-PrivateRoutes';
+import { DashboardRoutes } from './04-DashboardRoutes';
+import { HomeRoutes } from './05-HomeRoutes';
 
 import { PublicSection } from './styles';
+import { dark, light } from '../styles/02-theme';
+import { ThemeProvider } from 'styled-components';
+
 
 export const AppRouter = () => {
 
+    const dispatch = useDispatch();
     const [ theme, setTheme ] = useState( true );
+    const [ isLoggedIn, setIsLoggedIn ] = useState( false );
+
+    useEffect( ()=> {
+        firebase.auth().onAuthStateChanged( async(user) => {
+            if ( user?.uid ) {
+                dispatch( login( user.uid, user.displayName ));
+                setIsLoggedIn( true );
+                dispatch( startLoadingNotes( user.uid ) );
+            }
+        })
+    }, [ dispatch ]);
     
     return (
         <ThemeProvider theme={ theme ? dark : light}>
             <Router>
-                <div>
+                <PublicSection>
+                    <Navbar setTheme={ setTheme } isAuth={ isLoggedIn } setIsLoggedIn={ setIsLoggedIn }/>
                     <Switch>
-                        <PublicSection>
-                            <Navbar setTheme={ setTheme } />
-                            <Route exact path="/" component={ HomePage } />
-                            <Route exact path="/signup" component={ SignupPage } />
-                            <Route exact path="/login" component={ LoginPage } />
-                            <Route exact path="/dashboard" component={ DashboardPage } />
-                            <Route exact path="/dashboard/add-entry" component={ AddEntryPage } />
-                            <Route exact path="/dashboard/:entry" component={ EntryPage } />
-                        </PublicSection>
+                        <PrivateRoutes
+                            path="/dashboard"
+                            component={ DashboardRoutes }
+                            isAuth={ isLoggedIn }
+                        />
+                        <PublicRoutes
+                            path="/"
+                            component={ HomeRoutes }
+                            isAuth={ isLoggedIn }
+                        />
                     </Switch>
-                </div>
+                </PublicSection>
             </Router>
         </ThemeProvider>
     )

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import JournaldApp from './JournaldApp';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <JournaldApp />
   </React.StrictMode>,
   document.getElementById('root')
 );

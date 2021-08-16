@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import { BsCardImage } from 'react-icons/bs';
-
 import { bps } from "../../styles/03-breakPoints";
 
 const commun = `
@@ -70,7 +68,7 @@ export const Error = styled.small`
 
 /* Add Entry Form */
 
-export const AddEntryForm_ = styled.form`
+export const AddEntryFormStyled = styled.form`
     ${ commun };
     align-items: center;
     justify-content: center;
@@ -85,38 +83,23 @@ export const AddEntryForm_ = styled.form`
     } 
 `;
 
+export const ImageButtonSection = styled.section`
+    position: absolute;
+    display: none;
+`;
+
 export const ImageSection = styled.section`
     display: flex;
-    flex-direction: column;
+    position: relative;
     align-items: center;
     justify-content: center;
-    border: 2px solid #f0f0f0;
     width: 100%;
-    height: 100px;
-    border-radius: 4px;
 
-    ${ bps.desktop } {
-        height: 365px;
-        width: 150px;
+    :hover ${ ImageButtonSection } {
+        display: block;
     }
 `;
 
-export const AddImageButton = styled.button`
-    border: none;
-    background: none;
-    color: ${ props => props.theme.primary };
-    cursor: pointer;
-`;
-
-export const AddIcon = styled( BsCardImage )`
-    font-size: 2rem;
-`;
-
-export const AddImageText = styled.h3`
-    margin: 0;
-    font-size: 1rem;
-    color: ${ props => props.theme.primary };
-`;
 
 export const InputContainer = styled.div`
     display: flex;
@@ -127,13 +110,14 @@ export const TextArea = styled.textarea`
     background: #E8F0FE;
     border-radius: 4px;
     border: none;
-    height: 250px;
+    height: 150px;
     margin-bottom: .5em;
     margin-top: .25em;
     outline: none;
     padding: .75em;
     resize: none;
-    width: 250px;
+    width: 280px;
+    margin-bottom: 2em;
 `;
 
 /* Add Entry Form */

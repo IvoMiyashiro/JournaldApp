@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import { AddEntryForm } from '../../components/forms/03-AddEntryForm';
 
@@ -7,24 +7,23 @@ import {
     Title,
     FormSection,
     LinkR,
-} from './styles';
+} from '../AddEntry/styles';
 
 import {
     ArrowIcon,
-} from '../../pages/Login/styles';
+} from '../../pages/Login/styles'
 
-export const AddEntryPage = () => {
+export const EditEntryPage = () => {
     return (
         <AddEntryScreen>
-            <Title> Add New Entry </Title>
+            <Title> Edit Entry </Title>
             <FormSection>
-                <AddEntryForm />
+                <AddEntryForm />  
             </FormSection>
             <LinkR to="/dashboard">
                 Go Back
                 <ArrowIcon />
             </LinkR>
         </AddEntryScreen>
-
     )
 }

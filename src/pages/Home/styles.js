@@ -10,7 +10,6 @@ export const HomeScreen = styled.div`
     height: 100vh;
     justify-content: center;
     margin-top: -70px;
-    width: 100vw;
 `;
 
 export const HomeTitle = styled.h1`

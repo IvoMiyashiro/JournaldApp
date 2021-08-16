@@ -1,16 +1,16 @@
 import React from 'react';
 
 import {
-    AddJournald_,
+    AddJournaldCardStyled,
     AddJournaldTitle,
     AddJournaldIcon,
 } from './styles';
 
 export const AddJournaldCard = () => {
     return (
-        <AddJournald_ to="/dashboard/add-entry">
+        <AddJournaldCardStyled to="/dashboard/add-entry">
             <AddJournaldIcon />
             <AddJournaldTitle> Add Entry </AddJournaldTitle>
-        </AddJournald_>
+        </AddJournaldCardStyled>
     )
 }
