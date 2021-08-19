@@ -43,7 +43,7 @@ export const LoginForm = () => {
     }
 
     return (
-        <Form onSubmit={ handleSubmit }>
+        <Form onSubmit={ handleSubmit } className="animate__animated animate__fadeIn">
             {
                 loginError
                     ?
@@ -75,7 +75,7 @@ export const LoginForm = () => {
                 <ButtonPrimary
                     children={ buttonChildren }
                     width="100%"
-                    height="32px"
+                    height="30px"
                 />
                 <GoogleButton 
                     width="100%"

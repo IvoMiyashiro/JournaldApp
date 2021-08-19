@@ -8,7 +8,7 @@ import {
 } from './styles';
 
 
-export const Searchbar = () => {
+export const Searchbar = ({ state, setValue }) => {
 
     const handleSubmit = ( e ) => {
         e.preventDefault();
@@ -16,11 +16,18 @@ export const Searchbar = () => {
         
     }
 
+    const handleInputChange = ( e ) => {
+        setValue( e.target.value )  
+    }
+
     return (
         <SearchbarStyled onSubmit={ handleSubmit }>
             <SearchInput 
                 type="text" 
                 name="searchbar"
+                placeholder="Search note by title..."
+                value={ state }
+                onChange={ handleInputChange }
             />
             <SearchButton>
                 <SearchIcon />

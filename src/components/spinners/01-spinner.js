@@ -2,9 +2,8 @@ import React from 'react';
 
 import { SpinnerStyled } from './styles';
 
-export const Spinner = () => {
-
+export const Spinner = ({ color="#fff" }) => {
     return (
-        <SpinnerStyled></SpinnerStyled>
+        <SpinnerStyled color={ color }></SpinnerStyled>
     )
 }

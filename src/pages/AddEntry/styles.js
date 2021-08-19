@@ -35,7 +35,7 @@ export const LinkR = styled( Link )`
     color: ${ props => props.theme.textColor };
     display: flex;
     font-size: .85rem;
-    margin-right: 20em;
+    margin-right: 18em;
     margin-top: 1em;
     text-decoration: none;
 `;

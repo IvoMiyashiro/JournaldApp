@@ -32,7 +32,7 @@ export const ForgetPassword = styled( Link )`
     cursor: pointer;
     font-size: .85rem;
     margin: 0;
-    margin-bottom: 1em;
+    bottom: 1em;
     margin-left: .25em;
     margin-top: .5em;
     text-decoration: none;
@@ -52,6 +52,7 @@ export const ButtonsSection = styled.section`
     display: flex;
     flex-direction: column;
     gap: 1em;
+    margin-top: .5em;
 `;
 
 export const Error = styled.small`
@@ -88,12 +89,27 @@ export const ImageButtonSection = styled.section`
     display: none;
 `;
 
+export const SpinnerSection = styled.section`
+    position: absolute;
+    z-index: 5;
+`;
+
+export const SmallError = styled.small`
+    position: absolute;
+    color: red;
+    left: 6px;
+    bottom: -20px;
+`;
+
 export const ImageSection = styled.section`
     display: flex;
     position: relative;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 1.5em;
 
     :hover ${ ImageButtonSection } {
         display: block;
@@ -104,20 +120,40 @@ export const ImageSection = styled.section`
 export const InputContainer = styled.div`
     display: flex;
     flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
 `;
 
 export const TextArea = styled.textarea`
+    font-family: 'Source Sans Pro';
     background: #E8F0FE;
     border-radius: 4px;
     border: none;
-    height: 150px;
-    margin-bottom: .5em;
+    height: 125px;
     margin-top: .25em;
     outline: none;
     padding: .75em;
     resize: none;
-    width: 280px;
     margin-bottom: 2em;
 `;
 
 /* Add Entry Form */
+
+/* Error Form */
+
+export const FormErrorStyled = styled.div`
+    width: 100%;
+    border: 2px solid red;
+    background: #FEF1F2;
+    margin-bottom: .75em;
+    border-radius: 4px;
+`;
+
+export const FormErrorBody = styled.p`
+    color: red;
+    margin: 0;
+    font-size: .85rem;
+    padding: .5em;
+`;
+
+/* Error Form */

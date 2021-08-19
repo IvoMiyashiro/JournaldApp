@@ -16,12 +16,12 @@ import {
 export const AddEntryPage = () => {
     return (
         <AddEntryScreen>
-            <Title> Add New Entry </Title>
+            <Title> Add New Note </Title>
             <FormSection>
                 <AddEntryForm />
             </FormSection>
             <LinkR to="/dashboard">
-                Go Back
+                Dashboard
                 <ArrowIcon />
             </LinkR>
         </AddEntryScreen>

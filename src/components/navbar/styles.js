@@ -10,6 +10,7 @@ export const Nav = styled.nav`
     position: relative;
     width: 100%;
     background: transparent;
+    z-index: 100;
 `;
 
 export const NavContainer = styled.div`

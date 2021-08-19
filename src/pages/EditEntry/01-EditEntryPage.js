@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AddEntryForm } from '../../components/forms/03-AddEntryForm';
+import { EditEntryForm } from '../../components/forms/04-EditNoteForm';
 
 import { 
     AddEntryScreen,
@@ -18,7 +18,7 @@ export const EditEntryPage = () => {
         <AddEntryScreen>
             <Title> Edit Entry </Title>
             <FormSection>
-                <AddEntryForm />  
+                <EditEntryForm />  
             </FormSection>
             <LinkR to="/dashboard">
                 Go Back

@@ -10,7 +10,7 @@ import {
 export const HomePage = () => {
     return (
         <HomeScreen>
-            <HomeTitle>
+            <HomeTitle className="animate__animated animate__bounceIn">
                 Another
                 <br />
                 JournaldApp

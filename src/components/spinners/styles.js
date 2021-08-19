@@ -15,7 +15,7 @@ export const SpinnerStyled = styled.div`
     width: 17px;
     height: 17px;
     border-radius: 50%;
-    border-left-color: white;
+    border-left-color: ${ props => props.color };
 
     animation: ${spin} .5s linear infinite;
 `;

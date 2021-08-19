@@ -42,12 +42,17 @@ export const startGoogleLogin = () => {
     }
 }
 
-export const startSignUp = ( name, email, password ) => {
+export const startSignUp = ( name, email, password, setFormError, setEmailState ) => {
     return ( dispatch ) => {
         firebase.auth().createUserWithEmailAndPassword( email, password )
             .then( async({ user }) => {
                 await user.updateProfile({ displayName: name });
                 dispatch( login( user.uid, user.displayName ) );
+            })
+            .catch( error => {
+                if ( error.message === 'The email address is already in use by another account.') {
+                    setFormError( true );
+                }
             });
     }
 }

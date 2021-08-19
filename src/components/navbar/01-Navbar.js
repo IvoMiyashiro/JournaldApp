@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { startLogout } from '../../redux/actions/01-auth';
-
-import { startNewNote } from '../../redux/actions/02-notes';
+import { logOutCleaning } from '../../redux/actions/02-notes';
 
 import { ButtonPrimary } from '../buttons/01-ButtonPrimary';
 import { ButtonSecondary } from '../buttons/02-ButtonSecondary';
 import { MobileMenu } from './02-MobileMenu';
+import { Modal } from '../../components/modal/01-modal';
 
 import {
     Nav,
@@ -25,11 +24,11 @@ export const Navbar = ({
     setIsLoggedIn,
 }) => {
 
-    const history = useHistory();
-    const { name } = useSelector(state => state.auth)
+    const { name } = useSelector( state => state.auth );
     const dispatch = useDispatch();
     const [ isOpen, setIsOpen ] = useState( false );
     const [ isDark, setIsDark ] = useState( false );
+    const [ logoutModal, setLogoutModal ] = useState( false );
 
     const handleTheme = () => {
         setTheme( prev => !prev );
@@ -42,12 +41,13 @@ export const Navbar = ({
 
     const handleLogOut = () => {
         dispatch( startLogout() );
+        dispatch( logOutCleaning() );
         setIsLoggedIn( false );
+        setLogoutModal( prev => !prev );
     }
 
-    const hanldeAddNotes = () => {
-        dispatch( startNewNote() );
-        history.push('/dashboard/add-entry');
+    const handleLogoutMenu = () => {
+        setLogoutModal( prev => !prev );
     }
 
     return (
@@ -65,10 +65,10 @@ export const Navbar = ({
                                         <ButtonPrimary
                                             fontSize="1rem"
                                             fontStyle="bold"
-                                            height="30px"
+                                            height="26px"
                                             children="Add Entry"
                                             width="125px"
-                                            func={ hanldeAddNotes }
+                                            to="/dashboard/add-entry"
                                         />
                                         <ButtonSecondary
                                             fontSize="1rem"
@@ -76,7 +76,7 @@ export const Navbar = ({
                                             height="30px"
                                             children="log out"
                                             width="125px"
-                                            func={ handleLogOut }
+                                            func={ handleLogoutMenu }
                                         />
                                     </Section>
                                 :   
@@ -103,6 +103,15 @@ export const Navbar = ({
                 </NavContainer>
             </Nav>
             <MobileMenu isOpen={ isOpen } isAuth={ isAuth } setIsLoggedIn={ setIsLoggedIn } />
+            <Modal 
+                isOpen={ logoutModal }
+                setIsOpen={ setLogoutModal }
+                func={ handleLogOut }
+                title={ 'LOG OUT' }
+                children ={ 'Are you sure you want to exit?'}
+                buttonSecondary={'Cancel'}
+                buttonPrimary={'Log out'}
+            />
         </>
     )
 }

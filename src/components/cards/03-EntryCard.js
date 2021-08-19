@@ -1,8 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 import { ButtonPrimary } from '../buttons/01-ButtonPrimary';
 
-import img from '../../assets/images/JournaldImg.jpg';
+import defaultImage from '../../assets/images/JournaldImg.jpg';
 
 import { 
     EntryCardStyled,
@@ -14,21 +16,31 @@ import {
     EntryCardInfoSection
 } from './styles';
 
-export const EntryCard = ({ data }) => {
+export const EntryCard = () => {
+
+    const { active } = useSelector( state => state.notes );
+    const { id, date, title, body, url } = active;
+
+    const noteDate = moment( date ).format('LL');
+
     return (
-        <EntryCardStyled>
-            <EntryCardImg src={ img } alt="journald" />
+        <EntryCardStyled className="animate__animated animate__fadeIn">
+            <EntryCardImg src={
+                url !== ''
+                    ?   url
+                    :   defaultImage
+            } alt="journald" />
             <EntryCardInfoSection>
-                <EntryCardDate> 14 Ago. 2021 </EntryCardDate>
-                <EntryCardTitle> Journald Title </EntryCardTitle>
-                <EntryCardText> Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam odit ipsum magni sequi, reiciendis amet aspernatur ab architecto iure adipisci eius nesciunt esse alias eaque illo molestiae. Vel, quasi voluptatibus!</EntryCardText>
+                <EntryCardDate> { noteDate } </EntryCardDate>
+                <EntryCardTitle> { title } </EntryCardTitle>
+                <EntryCardText> { body } </EntryCardText>
             </EntryCardInfoSection>
             <EntryCardButtonSection>
                 <ButtonPrimary 
                     children="Edit"
                     width=""
-                    height="28px"
-                    to="/dashboard/edit"
+                    height="26px"   
+                    to={`/dashboard/note/edit/${ id }`}
                 />
             </EntryCardButtonSection>
         </EntryCardStyled>

@@ -69,3 +69,20 @@ export const CheckboxText = styled.label`
     margin: 0;
     margin-bottom: .1em;
 `;
+
+export const Select = styled.select`
+    width: 35px;
+    height: 30px;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    font-size: .85rem;
+    background: transparent;
+    color: black;
+    margin-left: .5em;
+`;
+
+export const Option = styled.option`
+    font-size: .85rem;
+    color: black;
+`;

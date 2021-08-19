@@ -14,10 +14,10 @@ import {
     ArrowIcon
 } from '../Login/styles';
 
-export const EntryPage = () => {
+export const NotePage = () => {
     return (
         <AddEntryScreen>
-            <Title> ENTRY </Title>
+            <Title> Note </Title>
             <EntrySection>
                 <EntryCard />  
             </EntrySection>

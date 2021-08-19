@@ -5,9 +5,9 @@ import {
     AddImageIcon,
 } from './styles'
 
-export const ButtonAddImage = () => {
+export const ButtonAddImage = ({ func }) => {
     return (
-        <ButtonAddImageStyled>
+        <ButtonAddImageStyled onClick={ func }>
             <AddImageIcon />
         </ButtonAddImageStyled>
     )

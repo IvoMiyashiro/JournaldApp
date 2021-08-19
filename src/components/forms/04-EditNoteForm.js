@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { 
-    startNewNote, 
-    startUploading,
-} from '../../redux/actions/02-notes';
-
-import { validateFile } from '../../helpers/03-imageValidator';
+import { startUpdatingNote, startUploading } from '../../redux/actions/02-notes';
 
 import { ButtonPrimary } from '../buttons/01-ButtonPrimary';
 import { Input, Label } from '../../components/inputs/styles';
@@ -28,20 +23,19 @@ import {
     InputContainer,
     ImageButtonSection,
     SpinnerSection,
-    SmallError,
 } from './styles';
 
-
-export const AddEntryForm = () => {
+export const EditEntryForm = () => {
 
     const history = useHistory();
     const dispatch = useDispatch();
+    const { active } = useSelector(state => state.notes);
+    const { title, body, url } = active;
 
-    const [ inputValue, setInputValue ] = useState( '' );
-    const [ textAreaValue, setTextAreaValue ] = useState( '' );
+    const [ inputValue, setInputValue ] = useState( title );
+    const [ textAreaValue, setTextAreaValue ] = useState( body );
     const [ buttonChildren, setButtonChildren ] = useState( 'Confirm' );
-    const [ formError, setFormError ] = useState( false );
-    const [ imageURL, setImageURL ] = useState({ url: '', state: false, loader: false });
+    const [ imageURL, setImageURL ] = useState({ url: url, loader: false });
 
     const handleSubmit = ( e ) => {
         e.preventDefault();
@@ -55,8 +49,8 @@ export const AddEntryForm = () => {
         setTextAreaValue( e.target.value );
     }
 
-    const hanldeAddNotes = () => {
-        const newNote = {
+    const hanldeEditNote = () => {
+        const updatedNote = {
             title: inputValue,
             body: textAreaValue,
             url: imageURL.url,
@@ -66,7 +60,7 @@ export const AddEntryForm = () => {
         setButtonChildren( <Spinner /> );
 
         setTimeout(() => {
-            dispatch( startNewNote( newNote ) );
+            dispatch( startUpdatingNote( updatedNote ) );
             history.push('/dashboard');
         }, 1000);
     }
@@ -77,50 +71,39 @@ export const AddEntryForm = () => {
 
     const handleInputImageChange = ( e ) => {
         const file = e.target.files[0];
-        if ( file !== undefined ) {
-            if ( validateFile( file ) ) {
-                dispatch( startUploading( file, setImageURL, setFormError ) );
-                setFormError( false );
-            } else {
-                setFormError( true );
-            }
+        if ( file ) {
+            dispatch( startUploading( file, setImageURL ) );
         }
     }
-
 
     return (
         <EntryCardStyled onSubmit={ handleSubmit } className="animate__animated animate__fadeIn">
             <EntryCardImg src={ 
-                imageURL.state
+                url !== ''
                     ? imageURL.url
                     : defaultImage
-                } alt="journald" 
+                }
             />
-                {
-                    imageURL.loader
-                        ? 
-                        <SpinnerSection>
-                            <Spinner />
-                        </SpinnerSection>
-                        :
-                        <ImageButtonSection>
-                            <ButtonAddImage 
-                                func={ handleButtonImage }
-                            />
-                            <input 
-                                type="file"
-                                style={{ display: 'none' }}
-                                id="fileSelector"
-                                name="file"
-                                onChange={ handleInputImageChange }
-                            />
-                        </ImageButtonSection>
-                }   
             {
-                formError 
-                    ? <SmallError> *The image is not valid. </SmallError>
-                    : undefined
-            }
+                imageURL.loader
+                    ? 
+                    <SpinnerSection>
+                        <Spinner color="black" />
+                    </SpinnerSection>
+                    :
+                    <ImageButtonSection>
+                        <ButtonAddImage 
+                            func={ handleButtonImage }
+                        />
+                        <input 
+                            type="file"
+                            style={{ display: 'none' }}
+                            id="fileSelector"
+                            name="file"
+                            onChange={ handleInputImageChange }
+                        />
+                    </ImageButtonSection>
+            }   
             <EntryCardInfoSection>
                 <InputContainer>
                     <Label isValid={ 1 }> Title </Label>
@@ -143,7 +126,7 @@ export const AddEntryForm = () => {
                     children={ buttonChildren }
                     width=""
                     height="30px"
-                    func={ hanldeAddNotes }
+                    func={ hanldeEditNote }
                 /> 
             </EntryCardButtonSection>
         </EntryCardStyled>
