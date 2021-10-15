@@ -27,7 +27,7 @@ export const JournaldCard = ({ data }) => {
 
     const history = useHistory();
     const dispatch = useDispatch();
-    const { title, date, id, body, lastEdit, url } = data;
+    const { title, date, id, body, url } = data;
     const noteDate = moment( date ).format( 'LL' );
     const [ deleteModal, setDeleteModal ] = useState( false );
     const [ modalButtonContent, setModalButtonContent ] = useState( 'Delete' );

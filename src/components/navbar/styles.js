@@ -77,6 +77,8 @@ export const HamburguerItem = styled.li`
     font-size: 1.115rem;
     font-weight: 600;
     padding: 1.25em;
+    width: 100%;
+    height: 100%;
     text-transform: uppercase;
 `;
 

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
-    // BrowserRouter as Router,
+    BrowserRouter as Router,
     Switch,
-    HashRouter,
 } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -39,7 +38,7 @@ export const AppRouter = () => {
     
     return (
         <ThemeProvider theme={ theme ? dark : light}>
-            <HashRouter>
+            <Router>
                 <PublicSection>
                     <Navbar setTheme={ setTheme } isAuth={ isLoggedIn } setIsLoggedIn={ setIsLoggedIn }/>
                     <Switch>
@@ -55,7 +54,7 @@ export const AppRouter = () => {
                         />
                     </Switch>
                 </PublicSection>
-            </HashRouter>
+            </Router>
         </ThemeProvider>
     )
 }

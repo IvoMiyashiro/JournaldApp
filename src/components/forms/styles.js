@@ -107,9 +107,10 @@ export const ImageSection = styled.section`
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     margin-top: 1.5em;
+    margin-bottom: 1em;
 
     :hover ${ ImageButtonSection } {
         display: block;

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { bps } from "../../styles/03-breakPoints";
 
+import { ImageButtonSection } from "../forms/styles";
+
 import { MdAddCircle } from 'react-icons/md';
 import { VscEdit } from 'react-icons/vsc';
 import { RiDeleteBin6Line } from 'react-icons/ri';
@@ -292,6 +294,10 @@ export const EntryCardImg = styled.img`
         width: 100%;
         height: 100%;
         background-color: #fff;
+    }
+
+    :hover ${ ImageButtonSection } {
+        display: block;
     }
 `;
 

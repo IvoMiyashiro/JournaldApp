@@ -18,8 +18,8 @@ import defaultImage from '../../assets/images/JournaldImg.jpg';
 
 import { 
     EntryCardStyled,
-    EntryCardImg,
     EntryCardButtonSection,
+    EntryCardImg,
     EntryCardInfoSection,
 } from '../cards/styles';
 
@@ -29,6 +29,7 @@ import {
     ImageButtonSection,
     SpinnerSection,
     SmallError,
+    ImageSection
 } from './styles';
 
 
@@ -90,32 +91,34 @@ export const AddEntryForm = () => {
 
     return (
         <EntryCardStyled onSubmit={ handleSubmit } className="animate__animated animate__fadeIn">
-            <EntryCardImg src={ 
-                imageURL.state
-                    ? imageURL.url
-                    : defaultImage
-                } alt="journald" 
-            />
-                {
-                    imageURL.loader
-                        ? 
-                        <SpinnerSection>
-                            <Spinner />
-                        </SpinnerSection>
-                        :
-                        <ImageButtonSection>
-                            <ButtonAddImage 
-                                func={ handleButtonImage }
-                            />
-                            <input 
-                                type="file"
-                                style={{ display: 'none' }}
-                                id="fileSelector"
-                                name="file"
-                                onChange={ handleInputImageChange }
-                            />
-                        </ImageButtonSection>
-                }   
+            <ImageSection >
+                <EntryCardImg src={ 
+                    imageURL.state
+                        ? imageURL.url
+                        : defaultImage
+                    } alt="journald" 
+                />
+                    {
+                        imageURL.loader
+                            ? 
+                            <SpinnerSection>
+                                <Spinner />
+                            </SpinnerSection>
+                            :
+                            <ImageButtonSection>
+                                <ButtonAddImage 
+                                    func={ handleButtonImage }
+                                />
+                                <input 
+                                    type="file"
+                                    style={{ display: 'none' }}
+                                    id="fileSelector"
+                                    name="file"
+                                    onChange={ handleInputImageChange }
+                                />
+                            </ImageButtonSection>
+                    }
+            </ImageSection>
             {
                 formError 
                     ? <SmallError> *The image is not valid. </SmallError>
